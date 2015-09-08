@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'users/show'
+
+  devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unlock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
-  devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' } 
+  get 'me', to: 'users#show'
   
   get 'welcome/index'
-
+  
   get 'welcome/about'
-
-  root to: "welcome#index"
+  
+  root to: 'welcome#index'
   
   
   

@@ -1,0 +1,4 @@
+<h1>Welcome back <%= @user.name %>!</h1>
+<p>Email: <%= @user.email %></p>
+<p>Joined: <%= time_ago_in_words(@user.confirmed_at) %> ago</p>
+<p><%= link_to "Edit", edit_user_registration_path %></p>
