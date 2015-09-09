@@ -10,21 +10,23 @@ require 'faker'
   user.skip_confirmation!
   user.save!
 end
-users = User.all
+
 
 user = User.first
-user.skip_confirmation!
-user.update_attributes!(
-  email: 'rotorcaptain@hotmail.com',
-  password: 'cyclic01',
-  name: 'Chris'
+  user.skip_confirmation!
+  user.update_attributes!(
+    email: 'rotorcaptain@hotmail.com',
+    password: 'cyclic01',
+    name: 'Chris'
   )
+  
+users = User.all  
 
 50.times do
   Item.create!(
-              user:         users.sample,
-              name:         Faker::Lorem.sentence,
-              created_at:   Faker::Date.backward(7)
+      user:         users.sample,
+      name:         Faker::Lorem.sentence,
+      created_at:   Faker::Date.backward(7)
 
   )
 end
