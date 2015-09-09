@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
+  get 'items/create'
 
-  get 'users/show'
+  devise_for :users
+  resources :users, only: [:update, :show] do
+    resources :items
+  end
+  
+  authenticated :user do
+    root to: "users#show", as: :authenticated_root, via: :get
+  end
 
-  devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unlock', registration: 'register', sign_up: 'cmon_let_me_in' }
-  
-  get 'me', to: 'users#show'
-  
-  get 'welcome/index'
-  
-  get 'welcome/about'
-  
-  root to: 'welcome#index'
-  
-  
+  unauthenticated do
+    root to: 'welcome#index'
+  end
+
+end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -68,4 +70,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
