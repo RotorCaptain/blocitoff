@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.mailer_sender = 'no-reply@blocitoff.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  # config.mailer = 'MyMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -259,4 +259,7 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  Devise.setup do |config|
+    config.secret_key = ENV['DEVISE_SECRET_KEY']
+  end
 end
