@@ -4,10 +4,6 @@ class ItemsController < ApplicationController
     @user = User.find(params[:user_id])
     @item = Item.new
   end
-  
-  def show
-    @item = Item.find(params[:id])
-  end
 
   def create
     @user = User.find(params[:user_id])
@@ -18,7 +14,7 @@ class ItemsController < ApplicationController
     @new_item = Item.new
 
     if @item.save
-      flash[:notice] = "Your item was saved."
+      flash[:notice] = "Your item has been saved."
     else
       flash[:error] = "There was an error saving your item."
     end
@@ -34,9 +30,9 @@ class ItemsController < ApplicationController
     @item = @user.items.find(params[:id])
 
     if @item.destroy
-      flash[:notice] = "Item was completed."
+      flash[:notice] = "Item has been completed."
     else
-      flash[:error] = "Item couldn't be deleted. Try again."
+      flash[:error] = "Item could not be deleted. Try again."
     end
   
   respond_to do |format|
